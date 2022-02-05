@@ -1,147 +1,218 @@
-import java.util.Scanner;
+
+import java.io.FileWriter;
+import java.util.Formatter;
+
+/**
+ * Object that serves the purpose of creating a building object as well as all the needed methods relating to this object except editing 
+ * text files which is done by the EditProjectFiles object.
+ * <p>
+ * @author Christiaan Rudolf Maritz
+ *
+ */
 
 public class Building {
 	
-	//Attributes
-	//All the variables up to deadline is what will be the Building object constructers values.
-	//custumrName, contrName, architName are all objects created in other object contructer and there purpose will be further explained.
+	/*
+	*Attributes
+	*/
 	
-	String projectNum;
-	String projectName;
-	String buildingType;
-	String projectAddress;
-	String erfNum;
-	Integer totalFee;
-	Integer paidToDate;
-	String deadline;
-	Customer customrName;
-	Contracter contrName;
-	Architect architName;
+	private String projectNum;
+	private String projectName;
+	private String buildingType;
+	private String projectAddress;
+	private int erfNum;
+	private double totalFee;
+	private double paidToDate;
+	private String deadline;
+	private String complete;
+	Customer customrObject;
+	Contracter contrObject;
+	Architect architObject;
 	
-	//Methods
-	//Creating object constructer;
-	//Each parameter entered when the object contructer is called will be the equal value for the variables of the information of the Building object.
+	/*
+	*Methods
+	*/
 	
-	public Building(String projectNum, String projectName, String buildingType, String projectAddress, String erfNum, Integer totalFee, Integer paidToDate, String deadline) {
+	/**
+	 * Object constructer for the Building object.
+	 * <p>
+	 * @param projectNum, this is the number for the project.
+	 * @param projectName, this is the project name.
+	 * @param buildingType, this is the type of building.
+	 * @param projectAddress, this is the address of the project.
+	 * @param erfNum, this is the erf number of the project.
+	 * @param totalFee, this is the total fee for the project.
+	 * @param paidToDate, this is the amount that must still be paid.
+	 * @param deadline, this is the deadline of the project.
+	 */
+	
+	public Building(String projectNum, String projectName, String buildingType, String projectAddress, int erfNum, double totalFee, double paidToDate, String deadline) {
 		this.projectNum = projectNum;
 		this.projectName = projectName;
 		this.buildingType = buildingType;
 		this.projectAddress = projectAddress;
-		this.erfNum = erfNum;
+		this.setErfNum(erfNum);
 		this.totalFee = totalFee;
-		this.paidToDate = paidToDate;
-		this.deadline = deadline;
+		this.setPaidToDate(paidToDate);
+		this.setDeadline(deadline);
+		this.complete = "incomplete";
 	}
 	
-	//Creating a Method which will operate as changing the deadline, this will be called in Edit object to edit the deadline;
+	/**
+	 * Function that will name the project name with the surname and type of building of the customer if project is not entered
+	 */
 	
-	public void changeDueDate() {
-		
-		//Creating new Scanner
-		//The user is the prompted with what the new Due date is.
-		
-		Scanner input = new Scanner(System.in);
-		System.out.println("What is new due date?\n");
-		
-		//The users input is the saved to the variable deadline.
-		
-		this.deadline = input.nextLine();
-		
+	public void surnameName() {
+		if(this.projectName.equals("")) {
+			this.projectName = this.customrObject.getSurname() + this.buildingType;
+		}
 	}
-	
-	//Creating a Method which will operate in change the paidToDate variable and will be called in the Edit object.
-	
-	public void changePaidToDate() {
-		
-		//Creating new Scanner
-		//The user is the prompted with how much has been paid so far
-		
-		Scanner input = new Scanner(System.in);
-		System.out.println("How much has been paid?\n");
-		
-		//The variable paidToDate is then equal to the input.
-		
-		this.paidToDate = input.nextInt();
-	}
-	
-	//This function callCustomerObject() served as a purpose to have the variable customrName equal to the parameter.
-	//The parameter would be a Customer object.
-	//This allows the Customer object to be used with ease within this Building object.
-	
-	public void callCustomerObject(Customer name) {
-		this.customrName = name;
-	}
-	
-	//This function callArchitectObject() served as a purpose to have the variable contrName equal to the parameter.
-	//The parameter would be a Contracter object.
-	//This allows the contracter object to be used with ease within this Building object.
-	
-	public void callArchitectObject(Architect name) {		
-		this.architName = name;
-	}
-	
-	//This function callContraObject() served as a purpose to have the variable contrName equal to the parameter.
-	//The parameter would be a Contracter object.
-	//This allows the contracter object to be used with ease within this Building object.
-	
-	public void callContraObject(Contracter name) {
-		this.contrName = name;
-	}
-		
-	//Creating Method to turn all the information in a String in the appropriate format
+
+	/**
+	*Method serves the purpose of creating a string if needed out of the building object
+	*<p>
+	*@return Returns the string output of the full object including all other objects with ToString methods.
+	*/
 	
 	public String toString() {
-		
-		//A string variable called output is created
-		//output is the equal to all the needed information to display the buildings details in an appropriate manner.
-		//each added info is the variable declared at the beginning of the object.
-		
-		String output = "Project number: " + projectNum;
-		output += "\nproject Name: " + projectName;
-		output += "\nBuilding Type: " + buildingType; 
-		output += "\nProject Address: " + projectAddress;
-		output+= "\nTotal fee: " + totalFee;
+
+		String output = "Project number: " + getProjectNum();
+		output += "\nproject Name: " + getProjectName();
+		output += "\nBuilding Type: " + getBuildingType(); 
+		output += "\nProject Address: " + getProjectAddress();
+		output+= "\nTotal fee: " + getTotalFee();
 		output += "\nERF Number: " + erfNum;
-		output+= "\nPaid so far: " + paidToDate;
-		output += "\nDeadline: " + deadline + "\n";
+		output+= "\nPaid so far: " + getPaidToDate();
+		output += "\nDeadline: " + getDeadline() + "\n";
 		
-		//Each object toString() method is then called thus displaying the customer,contracter as well as the architects information
-		
-		output += customrName.toString();
-		output += contrName.toString();
-		output += architName.toString();
-		
-		//It is then return allowing the user to print it if needed by calling the function.
+		output += customrObject.toString();
+		output += contrObject.toString();
+		output += architObject.toString();
 		
 		return output;
 	}
 	
-	//Creating a Method to finalize the project and create an invoice
-	//If this function is called it will also function as to finalize the building project.
+	/**
+	 * This method serves as a function to set the customer object within this class as it is needed to create the project name if it is not inputted subsituiting it 
+	 * with the last name of the customer and the building type.
+	 * @param object, This parameter will be a customer object serving for the purpose of setting a Customer object in this class.
+	 */
 	
-	public String finalized() {
-		
-		//Creating a String array which is equal to the function of contactDets() on a customer object
-		//contactDets() will create an array which stored the customers contact details
-		
-		String[] contact = customrName.contactDets();
-		
-		//A string is created called finalized which is then equal to needed information to create an invoice.
-		
-		String finalized = "Invoice";
-		
-		//One can see here how the array contact is used to output the information of the customer for the invoice
-		
-		finalized += "\nCustomer " + contact[1] + " phone number: " + contact[0];
-		finalized += "\nCustomer " + contact[1] + " email: " + contact[2]; 
-		
-		//The total amount to be paid is calculated by minus the total fee by what has been paid so far.
-		
-		finalized += "\nTotal amount: " + (totalFee - paidToDate);
-		finalized += "\nFinalized: Yes\n";
-		
-		//The invoice is then return so it can be printed.
-		
-		return finalized;
+	public void setCustomerObject(Customer object) {
+		this.customrObject = object;
+	}
+
+	/**
+	 * Getter for deadline
+	 * <p>
+	 * @return Returns the deadline.
+	 */
+	
+	String getDeadline() {
+		return deadline;
+	}
+
+	/**
+	 * setter for deadline
+	 */
+	
+	void setDeadline(String deadline) {
+		this.deadline = deadline;
+	}
+
+	/**
+	 * Getter for the amount paid so far
+	 * <p>
+	 * @return Returns the amount paid so far.
+	 */
+	
+	double getPaidToDate() {
+		return paidToDate;
+	}
+
+	/**
+	 * setter for amount paid so far.
+	 */
+	
+	void setPaidToDate(double paidToDate) {
+		this.paidToDate = paidToDate;
+	}
+
+	/**
+	 * Getter for the total fee.
+	 * <p>
+	 * @return Returns the total fee.
+	 */
+	
+	double getTotalFee() {
+		return totalFee;
+	}
+
+	/**
+	 * setter for the erf number.
+	 */
+	
+	void setErfNum(int erfNum) {
+		this.erfNum = erfNum;
+	}
+	
+	/**
+	 * Getter for the erf number.
+	 * <p>
+	 * @return Returns the erf number.
+	 */
+	
+	int getErf() {
+		return erfNum;
+	}
+
+	/**
+	 * Getter for the project address.
+	 * <p>
+	 * @return Returns the project address.
+	 */
+	
+	String getProjectAddress() {
+		return projectAddress;
+	}
+
+	/**
+	 * Getter for the building type.
+	 * <p>
+	 * @return Returns the building type.
+	 */
+	
+	String getBuildingType() {
+		return buildingType;
+	}
+
+	/**
+	 * Getter for the projects name.
+	 * <p>
+	 * @return Returns the project name.
+	 */
+	
+	String getProjectName() {
+		return projectName;
+	}
+
+	/**
+	 * Getter for the projects number.
+	 * <p>
+	 * @return Returns the project number.
+	 */
+	
+	String getProjectNum() {
+		return projectNum;
+	}
+
+	/**
+	 * Getter for wether the project is finalized.
+	 * <p>
+	 * @return Returns wether the project is finalized.
+	 */
+	
+	String getComplete() {
+		return complete;
 	}
 	}

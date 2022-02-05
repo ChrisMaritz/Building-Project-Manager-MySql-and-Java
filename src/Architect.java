@@ -1,22 +1,39 @@
+import java.io.FileWriter;
+import java.util.Formatter;
+
+/**
+*Creating Architect class
+*The purpose of this class is to create Architect object as well as all the needed methods for except that which is for editing text files
+*which is in editProjectFiles object.
+*/
 
 public class Architect {
 
-	//Attributes
-	//Each attribute is used to store the information of the Architect.
+	/*
+	*Attributes
+	*/
 	
-	String name;
-	String phoneNum;
-	String email;
-	String physiAddress;
-	String projectNum;
+	private String name;
+	private String phoneNum;
+	private String email;
+	private String physiAddress;
+	private String projectNum;
+
+	/*
+	*Methods
+	*/
 	
-	//Methods
-	//Creating object constructer.
-	//Each parameter entered will be what the attributes will be equal to.
+	/**
+	 * Object constructer of the Architect object
+	 * <p>
+	 * @param name, this is the architects name.
+	 * @param phoneNum, this is the architects phone number.
+	 * @param email, this is the architects email.
+	 * @param physiAddress, this is the architects physical address.
+	 * @param projectNum, this is the project number.
+	 */
 	
 	public Architect(String name, String phoneNum, String email, String physiAddress, String projectNum) {
-		
-		//Here it can be seen with the use of the this. keyword the attributes are equal to the parameters put in.
 		
 		this.name = name;
 		this.phoneNum = phoneNum;
@@ -24,22 +41,50 @@ public class Architect {
 		this.physiAddress = physiAddress;
 		this.projectNum = projectNum;
 	}
+
+	/**
+	 * Getter for architects name.
+	 * @return returns the name of the architect.
+	 */
 	
-	//Returning all the values as a String for display purposes.
+	String getName() {
+		return name;
+	}
+
+	/**
+	 * Getter for architects phone number.
+	 * @return returns the phone number of the architects.
+	 */
 	
-	public String toString() {
-		
-		//A string variable output is created with the needed format for each details of the Architect.
-		//each needed bit info is the info that was created in the object constructer.
-		
-		String output = "Architect for project number " + projectNum;
-		output += "\nPhonenumber: " + phoneNum;
-		output += "\nEmail: " + email;
-		output += "\nPhysical Address: " + physiAddress + "\n";
-		
-		//It is then returned so that it can be printed if needed
-		
-		return output;
+	String getPhoneNum() {
+		return phoneNum;
+	}
+
+	/**
+	 * Getter for architects email.
+	 * @return returns the email of the architects.
+	 */
+	
+	String getEmail() {
+		return email;
+	}
+
+	/**
+	 * Getter for architects physical address.
+	 * @return returns the physical address of the architects.
+	 */
+	
+	String getPhysiAddress() {
+		return physiAddress;
+	}
+
+	/**
+	 * Getter for the project number.
+	 * @return returns the project number.
+	 */
+	
+	String getProjectNum() {
+		return projectNum;
 	}
 	
 }

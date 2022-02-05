@@ -1,58 +1,101 @@
+import java.io.FileWriter;
+import java.util.Formatter;
+
+/**
+*Creating customer class
+*The purpose of this class is to create customer object as well as all the needed methods for except that which is for editing text files
+*which is in editProjectFiles object.
+*/
 
 public class Customer {
+
+	/*
+	*Attributes
+	*/
 	
-	//Attributes
-	//All this attributes are made to hold the customers details.
-			
-	String name;
-	String phoneNum;
-	String email;
-	String physiAddress;
-	String projectNum;
-		
-	//Methods
-	//Creating object constructer.
-	//Each parameter entered will be what the attributes will be equal to.
-			
-	public Customer(String name, String phoneNum, String email, String physiAddress, String projectNum) {
-		
-		//Here it can be seen with the use of the this. keyword the attributes are equal to the parameters put in.
+	private String name;
+	private String surname;
+	private String phoneNum;
+	private String email;
+	private String physiAddress;
+	private String projectNum;
+	
+	/*
+	*Methods
+	*/
+	
+	/**
+	 * Object constructer for the customer object
+	 * <p>
+	 * @param name, this is the customers first name.
+	 * @param surname, this is the customers surname.
+	 * @param phoneNum, this is the phone number of the customer.
+	 * @param email, this is the customers email.
+	 * @param physiAddress, the is the customers physical address.
+	 * @param projectNum, this is the number of the project.
+	 */
+	
+	public Customer(String name, String surname, String phoneNum, String email, String physiAddress, String projectNum) {
 		
 		this.name = name;
+		this.surname = surname;
 		this.phoneNum = phoneNum;
 		this.email = email;
 		this.physiAddress = physiAddress;
 		this.projectNum = projectNum;
 	}
 	
-	//Returning all the values as a String for display purposes.
+	/**
+	 * Getter for customers first name.
+	 * @return returns the first name of the customer.
+	 */
 	
-	public String toString() {
-		
-		//A string variable output is created with the needed format for each details of the customer.
-		//each needed bit info is the info that was created in the object constructer.
-		
-		String output = "\nCustomer for project number " + projectNum;
-		output += "\nPhonenumber: " + phoneNum;
-		output += "\nEmail: " + email;
-		output += "\nPhysical Address: " + physiAddress + "\n";
-		
-		//The output is returned so it can be printed if needed
-		
-		return output;
-		}
+	String getName() {
+		return name;
+	}
+
+	/**
+	 * Getter for the customer phone number.
+	 * @return returns the phone number of the customer.
+	 */
 	
-	//Creating a method which will return the customers contact Details.
-	//This method is returned as an array; the use of this can be seen in Building.java
+	String getPhoneNum() {
+		return phoneNum;
+	}
+
+	/**
+	 * Getter for customers email.
+	 * @return returns the email of the customer.
+	 */
 	
-	public String[] contactDets() {
-		
-		//each string item is equal to the items created in the object constructer.
-		
-		String[] contact = {this.phoneNum, this.email, this.name};
-		
-		//The array is returned so it can be used in Building.java
-		
-		return contact;
+	String getEmail() {
+		return email;
+	}
+
+	/**
+	 * Getter for customers address.
+	 * @return returns the address of the customer.
+	 */
+	
+	String getPhysiAddress() {
+		return physiAddress;
+	}
+
+	/**
+	 * Getter for customers project number.
+	 * @return returns the project number.
+	 */
+	
+	String getProjectNum() {
+		return projectNum;
+	}
+
+	/**
+	 * Getter for customers last name.
+	 * @return returns the last name of the customer.
+	 */
+	
+	String getSurname() {
+		return surname;
 	}
 }

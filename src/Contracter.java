@@ -1,23 +1,39 @@
-import java.util.Scanner;
+import java.io.FileWriter;
+import java.util.Formatter;
+
+/**
+*Creating Contracter class
+*The purpose of this class is to create a Contracter object as well as all the needed methods for it except that which is for editing text files
+*which is in editProjectFiles object.
+*/
 
 public class Contracter {
+
+	/*
+	*Attributes
+	*/
 	
-	//Attributes
-	//Each attribute is used to store the information of the contracter.
-		
-	String name;
-	String phoneNum;
-	String email;
-	String physiAddress;
-	String projectNum;
+	private String name;
+	private String phoneNum;
+	private String email;
+	private String physiAddress;
+	private String projectNum;
 	
-	//Methods
-	//Creating object constructer.
-	//Each parameter entered will be what the attributes will be equal to.
-		
+	/*
+	*Methods
+	*/
+	
+	/**
+	 * Object constructer for the Contracter object
+	 * <p>
+	 * @param name, this is the contracters name.
+	 * @param phoneNum, this is the contracters phone number.
+	 * @param email, this is the contracters email.
+	 * @param physiAddress, this is the contracter physical address.
+	 * @param projectNum, this is the project number.
+	 */
+	
 	public Contracter(String name, String phoneNum, String email, String physiAddress, String projectNum) {
-		
-		//Here it can be seen with the use of the this. keyword the attributes are equal to the parameters put in.
 		
 		this.name = name;
 		this.phoneNum = phoneNum;
@@ -26,40 +42,48 @@ public class Contracter {
 		this.projectNum = projectNum;
 	}
 	
-	//Returning all the values as a String for display purposes.
+	/**
+	 * Getter for Contracters phone number.
+	 * @return returns the phone number of the contracter.
+	 */
 	
-	public String toString() {
-		
-		//A string variable output is created with the needed format for each details of the contracter.
-		//each needed bit info is the info that was created in the object constructer.
-		
-		String output = "Contracter for project number " + projectNum;
-		output += "\nPhonenumber: " + phoneNum;
-		output += "\nEmail: " + email;
-		output += "\nPhysical Address: " + physiAddress + "\n";
-		
-		//It is then returned so it can be printed for later uses
-		
-		return output;
-		}
+	String getPhoneNum() {
+		return phoneNum;
+	}
+
+	/**
+	 * Getter for Contracters email.
+	 * @return returns the name of the email.
+	 */
+
+	String getEmail() {
+		return email;
+	}
+
+	/**
+	 * Getter for Contracters name.
+	 * @return returns the name of the contracter.
+	 */
 	
-	//This Method functions as changing the details of the details of the constructer if needed; this will be called in the Edit object
+	String getName() {
+		return name;
+	}
+
+	/**
+	 * Getter for Contracters physical address.
+	 * @return returns the physical address of the contracter.
+	 */
 	
-	public void editContr() {
-		
-		//A new scanner is created
-		//The user is then prompted with what the new phone number needed would be.
-		
-		Scanner input = new Scanner(System.in);
-		System.out.println("What is the new phone number?\n");
-		
-		//The phoneNum attribute is then equal to the users input.
-		
-		this.phoneNum = input.nextLine();
-		
-		//The same is then done but just with asking for a new email.
-		
-		System.out.println("What is the new email?\n");
-		this.email = input.nextLine();
+	String getPhysiAddress() {
+		return physiAddress;
+	}
+
+	/**
+	 * Getter for Contracters project number.
+	 * @return returns the project number of the contracter.
+	 */
+	
+	String getProjectNum() {
+		return projectNum;
 	}
 }
