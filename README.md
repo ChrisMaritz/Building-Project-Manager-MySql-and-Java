@@ -4,6 +4,7 @@
     * assign a contracter
     * assign a builder
     * assign a customer
+    * To save Building project details on MySql database
 
 2. Who would use this project?
     * A user who would like to have an ease of access to create a building project.
